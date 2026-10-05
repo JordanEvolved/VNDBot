@@ -1,0 +1,20 @@
+{
+  "name": "vndbot",
+  "version": "1.0.0",
+  "description": "A discord bot for the Visual Novel Database",
+  "homepage": "https://github.com/JordanEvolved/VNDBot#readme",
+  "bugs": {
+    "url": "https://github.com/JordanEvolved/VNDBot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JordanEvolved/VNDBot.git"
+  },
+  "license": "MIT",
+  "author": "Jordan Jean-Charles",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
