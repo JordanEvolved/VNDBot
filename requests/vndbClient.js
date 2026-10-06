@@ -1,4 +1,4 @@
-/* This file will call the VNDB API when nessecary */
+/* This file will call the VNDB API when necessary */
 
 // let id = 'v97';
 
@@ -19,5 +19,7 @@ async function queryVn(id) {
     console.log(JSON.stringify(novelInfo, null, 2));
 
 }
+
+module.exports = {queryVn};
 
 // queryVn(id);
