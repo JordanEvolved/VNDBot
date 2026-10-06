@@ -17,11 +17,12 @@ client.once(Events.ClientReady, (readyClient) => {
 
 client.commands = new Collection();
 
-const foldersPath = path.join(__dirname, 'commands'); //finds command folder
-const commandFolders = fs.readdirSync(foldersPath); //reads the command folder path
+// const foldersPath = path.join(__dirname, 'commands'); //finds command folder
+// const commandFolders = fs.readdirSync(foldersPath); //reads the command folder path
 
-for (const folder of commandFolders) {
-	const commandsPath = path.join(foldersPath, folder);
+//for (const folder of commandFolders) {
+	//const commandsPath = path.join(foldersPath, folder);
+	const commandsPath = path.join(__dirname, 'commands');
 	const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith('.js'));
 	for (const file of commandFiles) {
 		const filePath = path.join(commandsPath, file);
@@ -33,7 +34,7 @@ for (const folder of commandFolders) {
 			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
 	}
-}
+//}
 
 //listens for interactions and logs them only if slash commands
 client.on(Events.InteractionCreate, async (interaction) => {

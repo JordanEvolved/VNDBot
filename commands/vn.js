@@ -15,7 +15,7 @@ const data = new SlashCommandBuilder()
 
 async function execute(interaction) {
     //executes the vn slash command, grabs id and fetches from VNDB
-    const id = interaction.option.getString('id');
+    const id = interaction.options.getString('id');
     const vn = await queryVn(id);
 
    if (!vn) {
