@@ -1,6 +1,4 @@
-/* This file will call the VNDB API when necessary */
-
-// let id = 'v97';
+// This file will call the VNDB API when necessary for VN specific requests
 
 async function queryVn(id) {
 
@@ -22,5 +20,3 @@ async function queryVn(id) {
 }
 
 module.exports = {queryVn};
-
-// queryVn(id);
