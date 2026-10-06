@@ -5,11 +5,11 @@ const {SlashCommandBuilder, EmbedBuilder, Embed} = require('discord.js');
 const data = new SlashCommandBuilder()
     //creates the vn slash command
     .setName('vn')
-    .setDescription('Look up a visual novel by it\'s ID ')
+    .setDescription('Look up a visual novel by it\'s ID')
     .addStringOption((option) =>
         option
         .setName('id')
-        .setDescription('The VNDB id value (e.g \'vXYZ\')')
+        .setDescription('The VNDB id value (e.g \'v12\')')
         .setRequired(true)
     );
 
@@ -18,18 +18,20 @@ async function execute(interaction) {
     const id = interaction.option.getString('id');
     const vn = await queryVn(id);
 
-   if (!vn)
-   {
+   if (!vn) {
     return await interaction.reply('Error: No visual novel found with given id!');
    } else {
 
-    const embed = new EmbedBuilder();
+    const embed = new EmbedBuilder()
+        .setTitle(vn.title)
+        .setURL('https://vndb.org/' + id)
+        .setDescription(vn.description)
+        .setThumbnail(vn['image.url'])
+        .setFooter({text: `Rating: ${vn.rating}, Released: ${vn.released}`});
 
     //returns the embed after fully built with api data
     return await interaction.reply({embeds: [embed]});
-
    }
-
 }
 
 module.exports = {data, execute};

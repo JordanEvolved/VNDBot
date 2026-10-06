@@ -11,13 +11,14 @@ async function queryVn(id) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             filters: ["id", "=", id],
-            fields: "title, released, description, rating"
+            fields: "title, released, description, rating, image.url"
         })
     });
 
     const novelInfo = await data.json();
     console.log(JSON.stringify(novelInfo, null, 2));
 
+    return novelInfo.results[0]; //specifically grabs results from JSON
 }
 
 module.exports = {queryVn};
