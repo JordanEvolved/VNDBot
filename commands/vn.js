@@ -26,7 +26,7 @@ async function execute(interaction) {
         .setTitle(vn.title)
         .setURL('https://vndb.org/' + id)
         .setDescription(vn.description)
-        .setThumbnail(vn.image.url)
+        .setImage(vn.image.url)
         .setFooter({text: `Rating: ${vn.rating}, Released: ${vn.released}`});
 
     //returns the embed after fully built with api data
