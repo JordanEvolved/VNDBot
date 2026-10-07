@@ -1,5 +1,5 @@
 //Importing dependencies to be used in the /vn function
-const {queryVn} = require('../requests/vndbClient.js') 
+const {queryVn} = require('../requests/vnrequest.js') 
 const {SlashCommandBuilder, EmbedBuilder, Embed} = require('discord.js');
 const {truncateString} = require('../utils.js');
 

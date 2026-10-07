@@ -1,4 +1,4 @@
-const {recentReleases} = require('../requests/vndbClient.js');
+const {recentReleases} = require('../requests/vnrequest.js');
 const {SlashCommandBuilder, EmbedBuilder} = require('discord.js');
 
 const MAX_VALUE = 10;
