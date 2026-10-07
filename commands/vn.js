@@ -1,6 +1,7 @@
 //Importing dependencies to be used in the /vn function
 const {queryVn} = require('../requests/vndbClient.js') 
 const {SlashCommandBuilder, EmbedBuilder, Embed} = require('discord.js');
+const {truncateString} = require('../utils.js');
 
 const data = new SlashCommandBuilder()
     //creates the vn slash command
@@ -21,13 +22,19 @@ async function execute(interaction) {
    if (!vn) {
     return await interaction.reply('Error: No visual novel found with given id!');
    } else {
+ 
+    vn.description = truncateString(vn.description, 650); //So I can add other embed values without going over
 
     const embed = new EmbedBuilder()
         .setTitle(vn.title)
         .setURL('https://vndb.org/' + id)
+        .addFields(
+            {name: 'Released', value: `${vn.released}`, inline: true},
+            {name: 'Rating', value: `${vn.rating / 10}`, inline: true},
+        )
         .setDescription(vn.description)
         .setImage(vn.image.url)
-        .setFooter({text: `Rating: ${vn.rating}, Released: ${vn.released}`});
+        .setFooter({text: 'Invading your servers since 2026...'});
 
     //returns the embed after fully built with api data
     return await interaction.reply({embeds: [embed]});
