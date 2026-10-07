@@ -1,3 +1,5 @@
+//This file will call the VNDB API when necessary for character related queries
+
 async function queryChr(id) {
 
     console.log('ID being sent:',  JSON.stringify(id));
@@ -7,7 +9,7 @@ async function queryChr(id) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             filters: ['id', '=', id],
-            fields: 'id, name, description, vns, vns.role, image.url'
+            fields: 'id, name, description, vns.image.url, vns.id, vns.title, vns.role, image.url'
         })
     });
 
