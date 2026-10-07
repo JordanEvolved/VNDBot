@@ -1,4 +1,5 @@
 // This file will call the VNDB API when necessary for VN specific requests
+const {currentDate} = require('../utils.js');
 
 async function queryVn(id) {
 
@@ -19,4 +20,29 @@ async function queryVn(id) {
     return novelInfo.results[0]; //specifically grabs results from JSON
 }
 
-module.exports = {queryVn};
+async function recentReleases(num) {
+
+    const today = currentDate(); //finds the current date
+
+    console.log(`Finding recent releases before ${today}...`);
+
+    const data = await fetch('https://api.vndb.org/kana/vn', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            //sorts by novels released before current date
+            filters: ['released', '<=', today],
+            fields: "id, title, released",
+            sort: "released",
+            reverse: true,
+            results: num,
+        })
+    });
+
+    const recentInfo = await data.json();
+    console.log(JSON.stringify(recentInfo, null, 2));
+
+    return recentInfo.results;
+}
+
+module.exports = {queryVn, recentReleases};

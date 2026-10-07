@@ -6,4 +6,17 @@ function truncateString(str, num) {
     return str.slice(0, num - 3) + '...';
 };
 
-module.exports = {truncateString};
+function currentDate() {
+    let today = new Date();
+
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    console.log(`Today\'s date is ${today}`);
+    return today;
+};
+
+module.exports = {truncateString, currentDate};
