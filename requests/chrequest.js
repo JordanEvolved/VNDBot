@@ -1,10 +1,12 @@
 //This file will call the VNDB API when necessary for character related queries
+require('dotenv').config();
+const { BASE_URL } = process.env;
 
 async function queryChr(id) {
 
     console.log('ID being sent:',  JSON.stringify(id));
 
-    const data = await fetch('https://api.vndb.org/kana/character', {
+    const data = await fetch(`${BASE_URL}character`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

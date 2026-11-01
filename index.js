@@ -1,9 +1,10 @@
+const { token } = require('dotenv').config(); //reads .env variable
+
 const fs = require('node:fs'); //allows read/write of file system
 const path = require('node:path'); //utilities for working with file paths
 
 // Require the necessary discord.js classes
 const { Client, Collection, Events, GatewayIntentBits, MessageFlags } = require('discord.js');
-const { token } = require('dotenv').config(); //reads .env variable
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });

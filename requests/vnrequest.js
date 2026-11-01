@@ -1,11 +1,14 @@
 // This file will call the VNDB API when necessary for VN specific requests
+require('dotenv').config();
+const { BASE_URL } = process.env;
 const {currentDate} = require('../utils.js');
 
 async function queryVn(id) {
 
     console.log("ID being sent:", JSON.stringify(id));
+    console.log(`${BASE_URL}vn`);
 
-    const data = await fetch('https://api.vndb.org/kana/vn', {
+    const data = await fetch(`${BASE_URL}vn`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
