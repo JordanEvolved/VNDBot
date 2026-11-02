@@ -19,4 +19,17 @@ function currentDate() {
     return today;
 };
 
-module.exports = {truncateString, currentDate};
+function formatDescription(str) {
+
+    //g at the end is a global tag, which make sure every url is replaced instead of one
+    let urlRegex = /\[url=(https:\/\/.*?)\](.*?)\[\/url\]/g;
+    let spoilerRegex = /\[spoiler\](.*?)\[\/spoiler]/g;
+
+    //these replace the incorrect format with markdown
+    str = str.replace(urlRegex, `[$2]($1)`);
+    str = str.replace(spoilerRegex, `||$1||`);
+
+    return str;
+}
+
+module.exports = {truncateString, currentDate, formatDescription};

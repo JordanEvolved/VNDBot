@@ -1,6 +1,6 @@
 const {queryChr} = require('../requests/chrequest');
 const {SlashCommandBuilder, EmbedBuilder} = require('discord.js');
-const {truncateString} = require('../utils.js');
+const {truncateString, formatDescription} = require('../utils.js');
 
 const data = new SlashCommandBuilder()
     .setName('character')
@@ -22,7 +22,7 @@ async function execute(interaction) {
         const embed = new EmbedBuilder()
             .setTitle(chr.name)
             .setURL('https://vndb.org/' + id)
-            .setDescription(chr.description)
+            .setDescription(formatDescription(chr.description))
             .setImage(chr.image.url)
             .setThumbnail(chr.vns[0].image.url)
             .addFields(

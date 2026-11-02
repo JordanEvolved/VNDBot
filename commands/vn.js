@@ -1,7 +1,7 @@
 //Importing dependencies to be used in the /vn function
 const {queryVn} = require('../requests/vnrequest.js') 
 const {SlashCommandBuilder, EmbedBuilder, Embed} = require('discord.js');
-const {truncateString} = require('../utils.js');
+const {truncateString, formatDescription} = require('../utils.js');
 
 const data = new SlashCommandBuilder()
     //creates the vn slash command
@@ -32,7 +32,7 @@ async function execute(interaction) {
             {name: 'Released', value: `${vn.released}`, inline: true},
             {name: 'Rating', value: `${vn.rating / 10}`, inline: true},
         )
-        .setDescription(vn.description)
+        .setDescription(formatDescription(vn.description))
         .setImage(vn.image.url)
         .setFooter({text: 'Invading your servers since 2026...'});
 
