@@ -12,4 +12,20 @@ async function authUser() {
     console.log(JSON.stringify(userInfo, 0, 2));
 }
 
-module.exports = { authUser };
+async function queryList(id) {
+
+    const data = await fetch(`${BASE_URL}ulist`, {
+        method: 'POST',
+        headers: {'Content-Type': `application/json`}, //uses provided user token
+        body: JSON.stringify({
+            user: id,
+            fields: 'id, vote, vn.title'
+        })
+    });
+
+    const list = await data.json();
+    console.log(JSON.stringify(list, 0, 2));
+}
+
+
+module.exports = { authUser, queryList };
