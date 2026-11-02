@@ -19,7 +19,7 @@ async function queryList(id) {
         headers: {'Content-Type': `application/json`}, //uses provided user token
         body: JSON.stringify({
             user: id,
-            fields: 'id, vote, vn.title'
+            fields: 'id, vote, vn.title, started, finished'
         })
     });
 

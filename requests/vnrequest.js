@@ -29,7 +29,7 @@ async function recentReleases(num) {
 
     console.log(`Finding recent releases before ${today}...`);
 
-    const data = await fetch('https://api.vndb.org/kana/vn', {
+    const data = await fetch(`${BASE_URL}vn`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
