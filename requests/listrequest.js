@@ -39,4 +39,24 @@ async function queryList(id, sorting, reversed) {
     return list.results;
 }
 
-module.exports = { authUser, queryList };
+async function queryAddList(id, voted, started, finished) {
+    const data = await fetch (`${BASE_URL}ulist/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Authorization': `token ${VNDB_TOKEN}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            vote: voted,
+            started: started,
+            finished: finished
+        })
+    })
+
+    const added = await data.json();
+    console.log(JSON.stringify(added, 0, 2));
+
+    return added.results;
+}
+
+module.exports = { authUser, queryList, queryAddList };
