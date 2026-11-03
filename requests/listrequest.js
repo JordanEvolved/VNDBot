@@ -12,14 +12,24 @@ async function authUser() {
     console.log(JSON.stringify(userInfo, 0, 2));
 }
 
-async function queryList(id) {
+async function queryList(id, sorting, reversed) {
 
     const data = await fetch(`${BASE_URL}ulist`, {
         method: 'POST',
         headers: {'Content-Type': `application/json`}, //uses provided user token
         body: JSON.stringify({
             user: id,
-            fields: 'id, vote, vn.title, started, finished'
+            fields: 'id, vote, vn.title, started, finished',
+            filters: [
+                'or', 
+                ['label', '=', 1], //playing
+                ['label', '=', 2], //finished
+                ['label', '=', 3], //stalled
+                ['label', '=', 4] //dropped
+            ],
+            sort: sorting,
+            reverse: reversed,
+            results: 10
         })
     });
 
@@ -27,5 +37,6 @@ async function queryList(id) {
     console.log(JSON.stringify(list, 0, 2));
 }
 
+queryList('u266381', 'title', false);
 
 module.exports = { authUser, queryList };
