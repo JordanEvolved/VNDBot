@@ -40,6 +40,9 @@ async function queryList(id, sorting, reversed) {
 }
 
 async function queryAddList(id, voted, started, finished) {
+
+    console.log(`ID being sent for add/update: ${JSON.stringify(id)}`);
+
     const data = await fetch (`${BASE_URL}ulist/${id}`, {
         method: 'PATCH',
         headers: {
@@ -51,12 +54,36 @@ async function queryAddList(id, voted, started, finished) {
             started: started,
             finished: finished
         })
-    })
+    });
 
-    const added = await data.json();
-    console.log(JSON.stringify(added, 0, 2));
+    console.log(data.status);
+    console.log(data.ok);
 
-    return added.results;
+    if (!data.ok) {
+        throw new Error(`VNDB API Error: ${data.status}`)
+    }
+
+    console.log(`Successfully added/updated ${id}`);
+    return true;
 }
 
-module.exports = { authUser, queryList, queryAddList };
+async function queryDeleteList(id) {
+    console.log(`ID being sent for deletion: ${JSON.stringify(id)}`);
+
+    const data = await fetch(`${BASE_URL}ulist/${id}`, {
+        method: 'DELETE',
+        headers: {'Authorization': `token ${VNDB_TOKEN}`}
+    });
+
+   console.log(data.status);
+   console.log(data.ok);
+
+   if (!data.ok) {
+        throw new Error(`VNDB API Error: ${data.status}`);
+   }
+
+   console.log(`Succesfully deleted ${id}`);
+   return true;
+}
+
+module.exports = { authUser, queryList, queryAddList, queryDeleteList };

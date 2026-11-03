@@ -11,7 +11,7 @@
     "url": "git+https://github.com/JordanEvolved/VNDBot.git"
   },
   "license": "MIT",
-  "author": "Jordan Jean-Charles",
+  "author": "Jordan J",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
