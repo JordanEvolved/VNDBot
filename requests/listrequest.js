@@ -19,7 +19,7 @@ async function queryList(id, sorting, reversed) {
         headers: {'Content-Type': `application/json`}, //uses provided user token
         body: JSON.stringify({
             user: id,
-            fields: 'id, vote, vn.title, started, finished',
+            fields: 'id, vote, vn.title, started, finished, labels.label',
             filters: [
                 'or', 
                 ['label', '=', 1], //playing
@@ -35,8 +35,8 @@ async function queryList(id, sorting, reversed) {
 
     const list = await data.json();
     console.log(JSON.stringify(list, 0, 2));
-}
 
-queryList('u266381', 'title', false);
+    return list.results;
+}
 
 module.exports = { authUser, queryList };

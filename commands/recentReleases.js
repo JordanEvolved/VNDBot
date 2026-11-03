@@ -29,7 +29,7 @@ async function execute(interaction) {
         let releasesList = '';
 
         for (let i = 0; i < releases.length; i++) {
-            releasesList += `${i +1}. [${releases[i].title}](https://vndb.org/${releases[i].id}) - ${releases[i].released}\n`;
+            releasesList += `${i + 1}. [${releases[i].title}](https://vndb.org/${releases[i].id}) - ${releases[i].released}\n`;
         }
 
         embed.setDescription(releasesList);
