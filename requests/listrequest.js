@@ -64,7 +64,6 @@ async function queryAddList(id, voted, started, finished) {
     }
 
     console.log(`Successfully added/updated ${id}`);
-    return true;
 }
 
 async function queryDeleteList(id) {
@@ -83,7 +82,6 @@ async function queryDeleteList(id) {
    }
 
    console.log(`Succesfully deleted ${id}`);
-   return true;
 }
 
 module.exports = { authUser, queryList, queryAddList, queryDeleteList };
